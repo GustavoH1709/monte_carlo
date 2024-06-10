@@ -4,20 +4,20 @@ import matplotlib.pyplot as plt
 
 df_sheet1 = pd.read_excel('./soccer_stats.xlsx', sheet_name='Sheet 1')
 
-valores_coluna = df_sheet1.iloc[:, 5].tolist()
+valores = df_sheet1.iloc[:, 5].tolist()
 
-media = np.mean(valores_coluna)
-desvio_padrao = np.std(valores_coluna)
+media = np.mean(valores)
+desvio_padrao = np.std(valores)
 
-num_simulations = 20000
+qtd_simulacoes = 1_000_000
 
-simulacoes = np.random.normal(media, desvio_padrao, num_simulations)
+simulacao = np.random.normal(media, desvio_padrao, qtd_simulacoes)
 
-previsao_proximo_valor = np.mean(simulacoes)
+previsao = np.mean(simulacao)
 
 plt.figure(figsize=(10, 6))
-plt.hist(simulacoes, bins=50, color='skyblue', edgecolor='black', alpha=0.7)
-plt.axvline(previsao_proximo_valor, color='red', linestyle='dashed', linewidth=2)
+plt.hist(simulacao, bins=50, color='skyblue', edgecolor='black', alpha=0.7)
+plt.axvline(previsao, color='red', linestyle='dashed', linewidth=2)
 plt.title('Monte Carlo')
 plt.xlabel('Média de gols')
 plt.ylabel('Frequência')
